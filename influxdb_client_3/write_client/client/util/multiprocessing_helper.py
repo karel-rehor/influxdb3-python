@@ -127,6 +127,7 @@ class MultiprocessingWriter(multiprocessing.Process):
 
         :param kwargs: arguments are passed into ``__init__`` function of ``InfluxDBClient`` and ``write_api``.
         """
+        multiprocessing.set_start_method("spawn", force=True)
         multiprocessing.Process.__init__(self)
         self.kwargs = kwargs
         self.client = None
